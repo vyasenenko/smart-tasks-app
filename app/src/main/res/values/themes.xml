@@ -1,0 +1,39 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SmartTasks" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:navigationBarColor">@color/background_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="colorPrimaryVariant">@color/background_dark</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor">@color/background_dark</item>
+
+
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="android:textViewStyle">@style/Theme.SmartTasks.Text</item>
+        <item name="editTextStyle">@style/Theme.SmartTasks.Text</item>
+    </style>
+
+    <style name="Theme.SmartTasks" parent="Base.Theme.SmartTasks" />
+
+    <style name="Theme.SmartTasks.Text">
+        <item name="android:textColor">@color/text</item>
+        <item name="android:editTextColor">@color/text</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/amsipro_regular</item>
+    </style>
+
+    <style name="Theme.SmartTasks.Text.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/amsipro_bold</item>
+    </style>
+
+    <style name="Theme.SmartTasks.Text.Title.Resolved">
+        <item name="android:textColor">@color/text_title_resolved</item>
+    </style>
+
+    <style name="Theme.SmartTasks.Text.Title.Unresolved">
+        <item name="android:textColor">@color/text_title_unresolved</item>
+    </style>
+</resources>

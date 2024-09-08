@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.smart.tasks.domain.model.TaskStatus" />
+
+        <variable
+            name="viewModel"
+            type="com.smart.tasks.ui.details.TaskDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rootConstraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dateContainer"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_arrow_left" />
+
+            <TextView
+                android:id="@+id/toolbarTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:gravity="center"
+                android:text="@string/task_details"
+                android:theme="@style/Theme.SmartTasks.Text.Title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/back"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/noteTopImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@null"
+            android:elevation="12dp"
+            android:src="@drawable/note"
+            app:layout_constraintBottom_toTopOf="@id/card"
+            app:layout_constraintEnd_toEndOf="@id/card"
+            app:layout_constraintStart_toStartOf="@id/card"
+            app:layout_constraintTop_toTopOf="@id/card" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:elevation="1dp"
+            android:minHeight="80dp"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dateContainer">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/card_background"
+                android:paddingStart="16dp"
+                android:paddingTop="32dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="16dp">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/card_background"
+                    android:text="@{viewModel.taskTitle()}"
+                    android:textColor="@{viewModel.taskColor(context)}"
+                    android:theme="@style/Theme.SmartTasks.Text.Title.Unresolved"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Item" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@color/background"
+                    app:layout_constraintTop_toBottomOf="@id/title" />
+
+
+                <TextView
+                    android:id="@+id/dueDateTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/card_background"
+                    android:text="@string/due_date"
+                    android:theme="@style/Theme.SmartTasks.Text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider" />
+
+                <TextView
+                    android:id="@+id/daysLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/card_background"
+                    android:text="@string/days_left"
+                    android:theme="@style/Theme.SmartTasks.Text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider" />
+
+
+                <TextView
+                    android:id="@+id/dueDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:background="@color/card_background"
+                    android:text="@{viewModel.dueDays(context)}"
+                    android:textColor="@{viewModel.taskColor(context)}"
+                    android:theme="@style/Theme.SmartTasks.Text.Title.Unresolved"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dueDateTitle"
+                    tools:text="Due days" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:background="@color/card_background"
+                    android:text="@{viewModel.daysLeft(context)}"
+                    android:textColor="@{viewModel.taskColor(context)}"
+                    android:theme="@style/Theme.SmartTasks.Text.Title.Unresolved"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/daysLeft"
+                    tools:text="Days Left" />
+
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@color/background"
+                    app:layout_constraintTop_toBottomOf="@id/dueDate" />
+
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/card_background"
+                    android:text="@{viewModel.description()}"
+                    android:theme="@style/Theme.SmartTasks.Text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider2"
+                    tools:text="Description" />
+
+                <View
+                    android:id="@+id/divider3"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@color/background"
+                    app:layout_constraintTop_toBottomOf="@id/description" />
+
+                <TextView
+                    android:id="@+id/status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp"
+                    android:background="@color/card_background"
+                    android:text="@{viewModel.statusName(context)}"
+                    android:textColor="@{viewModel.statusColor(context)}"
+                    android:theme="@style/Theme.SmartTasks.Text.Title.Unresolved"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider3"
+                    tools:text="Unresolved" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:elevation="0dp"
+            android:minHeight="80dp"
+            android:transitionName="@string/card_details_transition"
+            android:visibility="invisible"
+            app:cardBackgroundColor="@color/card_background"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="1dp"
+            app:layout_constraintBottom_toBottomOf="@id/card"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/card_background">
+
+                <EditText
+                    android:id="@+id/comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/card_background"
+                    android:enabled="@{!viewModel.isTaskCompleted()}"
+                    android:gravity="top"
+                    android:hint="@string/put_comment_here"
+                    android:importantForAutofill="no"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:minHeight="80dp"
+                    android:padding="16dp"
+                    android:text="@={viewModel.comment}"
+                    android:theme="@style/Theme.SmartTasks.Text"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/resolved"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/text_title_resolved"
+            android:elevation="0dp"
+            android:onClick="@{view -> viewModel.requestChangeStatus(TaskStatus.RESOLVED)}"
+            android:text="@string/resolve"
+            android:visibility="invisible"
+            app:cornerRadius="5dp"
+            app:layout_constraintEnd_toStartOf="@id/unresolved"
+            app:layout_constraintStart_toStartOf="@id/card"
+            app:layout_constraintTop_toTopOf="@id/card"
+            app:setVisibility="@{!viewModel.isTaskCompleted()}" />
+
+        <Button
+            android:id="@+id/unresolved"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/text_title_unresolved"
+            android:elevation="0dp"
+            android:onClick="@{view -> viewModel.requestChangeStatus(TaskStatus.UNRESOLVED)}"
+            android:text="@string/cant_resolve"
+            android:visibility="invisible"
+            app:cornerRadius="5dp"
+            app:layout_constraintEnd_toEndOf="@id/card"
+            app:layout_constraintStart_toEndOf="@id/resolved"
+            app:layout_constraintTop_toTopOf="@id/card"
+            app:setVisibility="@{!viewModel.isTaskCompleted()}" />
+
+        <ImageView
+            android:id="@+id/imageStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:contentDescription="@null"
+            android:elevation="2dp"
+            android:src="@drawable/unresolved_sign"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@id/card"
+            app:layout_constraintStart_toStartOf="@id/card"
+            app:layout_constraintTop_toTopOf="@id/card"
+            app:setImage="@{viewModel.statusImage()}"
+            app:setVisibility="@{viewModel.isTaskCompleted()}" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="11dp"
+            android:elevation="35dp"
+            android:indeterminate="true"
+            android:maxHeight="11dp"
+            android:minHeight="11dp"
+            app:layout_constraintBottom_toBottomOf="@id/dateContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dateContainer"
+            app:setVisibility="@{viewModel.progressEvent}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

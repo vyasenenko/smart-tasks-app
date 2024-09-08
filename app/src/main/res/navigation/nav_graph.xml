@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/SplashFragment">
+
+    <fragment
+        android:id="@+id/SplashFragment"
+        android:name="com.smart.tasks.ui.splash.SplashFragment"
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/action_SplashFragment_to_TasksFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"
+            app:destination="@id/TasksFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/TasksFragment"
+        android:name="com.smart.tasks.ui.list.TasksFragment"
+        tools:layout="@layout/fragment_tasks">
+
+        <action
+            android:id="@+id/action_TasksFragment_to_TaskDetailsFragment"
+            app:destination="@id/TaskDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/TaskDetailsFragment"
+        android:name="com.smart.tasks.ui.details.TaskDetailsFragment"
+        tools:layout="@layout/fragment_task_details">
+
+        <argument
+            android:name="id"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
+</navigation>

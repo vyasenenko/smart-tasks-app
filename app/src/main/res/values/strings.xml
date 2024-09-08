@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Smart Tasks</string>
+    <string name="base_url">http://demo1414406.mockable.io/</string>
+    <string name="list_fragment_label">Easy-to-read list 🙂</string>
+    <string name="today">Today</string>
+    <string name="due_date">Due date</string>
+    <string name="days_left">Days left</string>
+    <string name="no_tasks_for_today">No tasks for today!</string>
+    <string name="task_details">Task Details</string>
+    <string name="resolved">Resolved</string>
+    <string name="unresolved">Unresolved</string>
+    <string name="resolve">Resolve</string>
+    <string name="cant_resolve">Can\'t resolve</string>
+    <string name="put_comment_here">Put comment here..</string>
+    <string name="do_you_want_left_comment">Do you want to left comment?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="item_task_transition">item_task_transition_%s</string>
+    <string name="card_details_transition">card_details_transition</string>
+    <string name="n_a">N/A</string>
+
+</resources>

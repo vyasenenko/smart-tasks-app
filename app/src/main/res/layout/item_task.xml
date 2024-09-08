@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.smart.tasks.ui.list.TaskItemViewModel" />
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="5dp"
+        android:minHeight="80dp"
+        android:onClick="@{view -> viewModel.onItemClick(view)}"
+        android:transitionName="@{@string/item_task_transition(viewModel.item.id)}"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/card_background"
+            android:paddingStart="16dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="10dp">
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:background="@color/card_background"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{viewModel.taskTitle()}"
+                android:textColor="@{viewModel.taskColor(context)}"
+                android:theme="@style/Theme.SmartTasks.Text.Title.Unresolved"
+                app:layout_constraintEnd_toStartOf="@id/status"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_goneMarginEnd="0dp"
+                tools:text="Item" />
+
+            <ImageView
+                android:id="@+id/status"
+                android:contentDescription="@null"
+                app:setImage="@{viewModel.statusImage()}"
+                app:setVisibility="@{viewModel.isCompleted()}"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:layout_constraintBottom_toBottomOf="@id/title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/title" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="7dp"
+                android:background="@color/background"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+
+            <TextView
+                android:id="@+id/dueDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/card_background"
+                android:text="@string/due_date"
+                android:theme="@style/Theme.SmartTasks.Text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+            <TextView
+                android:id="@+id/daysLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/card_background"
+                android:text="@string/days_left"
+                android:theme="@style/Theme.SmartTasks.Text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:background="@color/card_background"
+                android:text="@{viewModel.dueDays(context)}"
+                android:textColor="@{viewModel.taskColor(context)}"
+                android:theme="@style/Theme.SmartTasks.Text.Title.Unresolved"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dueDate"
+                tools:text="Due days" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:background="@color/card_background"
+                android:text="@{viewModel.daysLeft(context)}"
+                android:textColor="@{viewModel.taskColor(context)}"
+                android:theme="@style/Theme.SmartTasks.Text.Title.Unresolved"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/daysLeft"
+                tools:text="Days Left" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>
