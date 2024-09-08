@@ -42,14 +42,6 @@ The app follows the **MVVM architecture**:
 
 3. Build and run the app on an Android device or emulator.
 
-## API
-
-The app retrieves tasks from the following test API endpoint:
-
-```
-http://demo1414406.mockable.io/
-```
-
 ## Requirements
 
 - **Minimum SDK version**: 21

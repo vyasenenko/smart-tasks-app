@@ -1,10 +1,8 @@
 package com.smart.tasks.ui.splash
 
-import android.os.Bundle
 import android.transition.AutoTransition
 import android.transition.Transition
 import android.transition.TransitionManager
-import android.view.View
 import android.view.animation.AnticipateOvershootInterpolator
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.lifecycleScope
@@ -20,8 +18,8 @@ class SplashFragment : BindingFragment<FragmentSplashBinding>() {
     override val layout: Int
         get() = R.layout.fragment_splash
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onResume() {
+        super.onResume()
         lifecycleScope.launch {
             delay(100)
             transitionViews()
